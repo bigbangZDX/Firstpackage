@@ -7,7 +7,9 @@
       </span>用户登录
     </div>
 
-    <input type="text" placeholder="请输入用户名或手机号" class="in1">
+    <input type="text" placeholder="请输入手机号" class="in1">
+    
+
     <img src="../../../img/gr.png" alt class="t1">
     <img src="../../../img/ss.png" alt class="t2">
     <input type="password" name id placeholder="请输入密码" class="in2">
@@ -45,23 +47,35 @@ export default {
   },
   methods: {
     fn1() {
-      this.$router.push({ name: "mine" });
+      this.$router.push({ name: "home" });
       // window.location.href='/mine';
       this.aa = false;
     },
     handleAvatarSuccess(res, file) {
       this.imageUrl = URL.createObjectURL(file.raw);
-      console.log(this.imageUrl)
+      console.log(this.imageUrl);
     },
     beforeAvatarUpload(file) {
       const isJPG = file.type === "image/jpeg";
       const isLt2M = file.size / 1024 / 1024 < 2;
 
       if (!isJPG) {
-        this.$message.error("上传头像图片只能是 JPG 格式!");
+        // this.$message.error("上传头像图片只能是 JPG 格式!");
+        Toast({
+          message: "上传头像图片只能是 JPG 格式!",
+          position: "middle",
+          duration: 2000,
+          className: "toasts"
+        });
       }
       if (!isLt2M) {
-        this.$message.error("上传头像图片大小不能超过 2MB!");
+        // this.$message.error("上传头像图片大小不能超过 2MB!");
+        Toast({
+          message: "上传头像图片大小不能超过 2MB!",
+          position: "middle",
+          duration: 2000,
+          className: "toasts"
+        });
       }
       return isJPG && isLt2M;
     },
@@ -70,61 +84,68 @@ export default {
       var in2 = $(".in2").val();
       // console.log(in1);
       // console.log(in2);
-//       document.cookie = "phone=" + in1 + ";"
-//       //获取当前时间
-// var date=new Date();
-// //将date设置为过去的时间
-// date.setTime(date.getTime()-10000);
-// //将userId这个cookie删除
-// document.cookie="phone=;expire="+date.toGMTString();
-  localStorage.setItem("phone",in1)
-  localStorage.setItem("imgUrl",this.imageUrl)
-      console.log(localStorage.phone)
-      console.log(localStorage.imgUrl)
+      //       document.cookie = "phone=" + in1 + ";"
+      //       //获取当前时间
+      // var date=new Date();
+      // //将date设置为过去的时间
+      // date.setTime(date.getTime()-10000);
+      // //将userId这个cookie删除
+      // document.cookie="phone=;expire="+date.toGMTString();
+      sessionStorage.setItem("phone", in1);
+
+      // sessionStorage.setItem('sid', res.data.data.sid); // 设置本地存储信息
+
+      sessionStorage.setItem("imgUrl", this.imageUrl);
+      console.log(sessionStorage.phone);
+      console.log(sessionStorage.imgUrl);
 
       const url = "http://localhost:3000/login";
       // var params = new URLSearchParams();
-      if(this.imageUrl!=""){
-                     this.$axios({
-        method: "post",
-        url: url,
-        data: {
-          num: in1,
-          pass: in2,
-          imageUrl:this.imageUrl
-        },
-        headers: {
-          "Content-Type": "application/json; charset=UTF-8"
-        }
-      }).then(res => {
-        console.log(res);
-        console.log(res.data.code);
-        if (res.data.code == 0) {
-          Toast({
-            message: "登录成功！",
-            position: "middle",
-            duration: 2000,
-            className: "toasts"
-          });
-          this.$router.push({ name: "mine", query: { user: in1 } });
-        } else if (res.data.code == 1) {
-          Toast({
-            message: "用户名或密码错误",
-            position: "middle",
-            duration: 2000,
-            className: "toasts"
-          });
-        }
-      });
-      }else {
-         Toast({
-            message: "请设置您的头像！",
-            position: "middle",
-            duration: 2000,
-            className: "toasts"
-          });
+      if (this.imageUrl != "") {
+        this.$axios({
+          method: "post",
+          url: url,
+          data: {
+            num: in1,
+            pass: in2,
+            imageUrl: this.imageUrl
+          },
+          headers: {
+            "Content-Type": "application/json; charset=UTF-8"
+          }
+        }).then(res => {
+          console.log(res);
+          console.log(res.data);
+          if (res.data.code == 0) {
+            Toast({
+              message: "登录成功！",
+              position: "middle",
+              duration: 2000,
+              className: "toasts"
+            });
+            // this.$router.push({ name: "mine", query: { user: in1 } });
+            sessionStorage.setItem("sid", res.data.sid); // 设置本地存储信息
+
+            // this.$router.push(this.$route.query.redirect); // 跳转至前一页，this.$route.query.redirect是获取上面传递过来的值
+        this.$router.push({name:"home"})
+
+          } else if (res.data.code == 1) {
+            Toast({
+              message: "用户名或密码错误",
+              position: "middle",
+              duration: 2000,
+              className: "toasts"
+            });
+          }
+        });
+      } else {
+        Toast({
+          message: "请设置您的头像！",
+          position: "middle",
+          duration: 2000,
+          className: "toasts"
+        });
       }
-     
     }
   }
 };
@@ -195,7 +216,7 @@ export default {
   font-weight: 500;
 }
 .avatar-uploader .el-upload {
-  border: 2px solid #271bce!important;
+  border: 2px solid #271bce !important;
   border-radius: 6px;
   cursor: pointer;
   position: relative;
@@ -217,5 +238,4 @@ export default {
   height: 178px;
   display: block;
 }
-
 </style>

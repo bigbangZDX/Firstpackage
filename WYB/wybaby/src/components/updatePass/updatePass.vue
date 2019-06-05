@@ -7,11 +7,12 @@
       </span>修改密码
     </div>
     <div class="z-con">
-        <span>旧密码：</span><input type="text" class="jiu"><br><br>
-        <span>新密码：</span><input type="password" class="xin"><br><br>
-        <span style="padding-left:45px;">确认密码：</span><input type="password" class="que">
+        <span>手机号：</span><input type="text" class="jiu" placeholder="请输入手机号"><br><br>
+        <span>旧密码：</span><input type="text" class="jiu" placeholder="请输入旧密码"><br><br>
+        <span>新密码：</span><input type="password" class="xin" placeholder="请输入新密码"><br><br>
+        <span style="padding-left:45px;">确认密码：</span><input type="password" class="que" placeholder="请确认新密码">
     </div>
-    <input type="button" value="确认保存" style="margin-left:150px;margin-top:20px;" @click="save()">
+    <input type="button" value="修改密码" style="margin-left:150px;margin-top:20px;" @click="save()">
   </div>
 </template>
 
@@ -116,7 +117,7 @@ export default {
 }
 .z-con{
     width: 100%;
-    height: 140px;
+    height: 200px;
     border-radius: 11px;
     padding-top: 40px;
     background: #b1bdf1;

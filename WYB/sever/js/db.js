@@ -169,6 +169,7 @@ module.exports.count = function(cName,whereObj,res,cb){
 // 		})
 // 	})
 // }
+//删除
 module.exports.deleteById=function(cName,obj,res,cb){
 	//console.log("mongodb.ObjectId(obj.id):",mongodb.ObjectId(obj.id));
 	var whereObj={
@@ -180,6 +181,27 @@ module.exports.deleteById=function(cName,obj,res,cb){
 		})
 	},res)
 }
-//查找
+//更新用户管理和订单管理的数据
+module.exports.updateOne=function(cName,obj,res,cb){
+	//console.log("mongodb.ObjectId(obj.id):",mongodb.ObjectId(obj.id));
+	//查询条件
+	// if(obj.description!=""){
+		var whereObj={_id:mongodb.ObjectId(obj._id)};
 
+	// }else{
+		// var whereObj={num:obj.phh}
+	// }
+		
+	
+	//更改数据
+	var updateStr={
+		$set:{num:obj.num,pass:obj.pass,price:obj.price,phone:obj.phone,description:obj.description,pic:obj.pic,time:obj.time,number:obj.number,av:obj.av},
+		// $push:{"comments":obj.value}
+	}
+	connectMGDB(function(dbase,db){
+		dbase.collection(cName).updateOne(whereObj,updateStr,function(err,result){
+			cb(err,result,db);
+		})
+	})
+}
    

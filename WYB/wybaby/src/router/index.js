@@ -15,6 +15,8 @@ import updatePass from '@/components/updatePass/updatePass'
 import deep from '@/components/deep/deep'
 import address from '@/components/address/address'
 import aixin from '@/components/aixin/aixin'
+import money from '@/components/money/money'
+import dingdan from '@/components/dingdan/dingdan'
 
 
 
@@ -28,12 +30,15 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect:"/deng"
+      redirect:"/home"
     },
     {
       path: '/home',
       name: 'home',
       component: home,
+      meta: {
+        requireAuth: false // 配置此条，进入页面前判断是否需要登陆
+      },
       // children:[
       //   {path:"show",component:show
       
@@ -44,21 +49,33 @@ export default new Router({
       path: '/show',
       name: 'show',
       component: show,
+      meta: {
+        requireAuth: false // 配置此条，进入页面前判断是否需要登陆
+      },
     },
     {
       path: '/fenlei',
       name: 'fenlei',
-      component: fenlei       //组件
+      component: fenlei  ,     //组件
+      meta: {
+        requireAuth: false // 配置此条，进入页面前判断是否需要登陆
+      },
     },
     {
       path: '/shopcar',
       name: 'shopcar',
-      component: shopcar
+      component: shopcar,
+      meta: {
+        requireAuth: true // 配置此条，进入页面前判断是否需要登陆
+      },
     },
     {
       path: '/mine',
       name: 'mine',
       component: mine,
+      meta: {
+        requireAuth: true // 配置此条，进入页面前判断是否需要登陆
+      },
       // children:[
       //   {path:"deng",component:deng
       
@@ -74,37 +91,74 @@ export default new Router({
       path: '/gobuy',
       name: 'gobuy',
       component: gobuy,
+      meta: {
+        requireAuth: true // 配置此条，进入页面前判断是否需要登陆
+      },
     },
     {
       path: '/youhui',
       name: 'youhui',
       component: youhui,
+      meta: {
+        requireAuth: true // 配置此条，进入页面前判断是否需要登陆
+      },
     },
     {
       path: '/help',
       name: 'help',
       component: help,
+      meta: {
+        requireAuth: true // 配置此条，进入页面前判断是否需要登陆
+      },
     },
     {
       path: '/updatePass',
       name: 'updatePass',
       component: updatePass,
+      meta: {
+        requireAuth: true // 配置此条，进入页面前判断是否需要登陆
+      },
     },
     {
       path: '/deep',
       name: 'deep',
       component: deep,
+      meta: {
+        requireAuth: true // 配置此条，进入页面前判断是否需要登陆
+      },
     },
     {
       path: '/address',
       name: 'address',
       component: address,
+      meta: {
+        requireAuth: true // 配置此条，进入页面前判断是否需要登陆
+      },
     },
     {
       path: '/aixin',
       name: 'aixin',
       component: aixin,
+      meta: {
+        requireAuth: true // 配置此条，进入页面前判断是否需要登陆
+      },
     },
+    {
+      path: '/money',
+      name: 'money',
+      component: money,
+      meta: {
+        requireAuth: true // 配置此条，进入页面前判断是否需要登陆
+      },
+      
+    },
+    {
+      path: '/dingdan',
+      name: 'dingdan',
+      component: dingdan,
+      meta: {
+        requireAuth: true // 配置此条，进入页面前判断是否需要登陆
+      },}
   ]
 });
       

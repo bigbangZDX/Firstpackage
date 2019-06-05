@@ -173,15 +173,15 @@ app.post("/login", function (req, res) {
 	if (TEL_REGEXP.test(whereobj.num) && reg.test(whereobj.pass)) {
 		console.log("keyi")
 		var ok = { code: 0 }
-		res.send(ok);
+		// res.send(ok);
 		//插入用户登录信息
 		db.insertOne("User", whereobj, res, function (err, result, db) {
 			if (err) {
 				console.log("添加失败")
 			} else {
 				//			res.send(result);
-				console.log("result11111:", result.result)
-				// res.send(whereobj.num)
+				console.log("result11111:", result.ops[0]._id)
+				res.send({code:0,sid:result.ops[0]._id})
 				db.close();
 			}
 		})
@@ -288,7 +288,70 @@ app.post("/showshoucang", function (req, res) {
 		}
 	})
 })
+//删除收藏的数据
+app.post("/removeshoucang", function (req, res) {
+	var whereobj = req.body;
+	console.log("whereobj:", whereobj)
+	db.deleteById("shouCang", whereobj, res, function (err, result, db) {
+		console.log("查找数据")
+		if (err) {
+			console.log("删除失败")
+		} else {
+			console.log("aaa", result);
+			res.send(result);
+			db.close();
+		}
+	})
+})
+//插入我的订单
+app.post("/insertdingdan", function (req, res) {
+	// console.log("req",res)
+	var whereobj = req.body;
+	console.log("whereobj123:", whereobj)
+	db.insertOne("dingdan", whereobj, res, function (err, result, db) {
+		if (err) {
+			console.log("添加失败")
+		} else {
+			//			res.send(result);
+			console.log("result:", result.result)
+			db.close();
+		}
+	})
+})
+//显示订单
+app.post("/showdingdan", function (req, res) {
+	// console.log("req",res)
+	var whereobj = req.body;
+	console.log("whereobj:", whereobj)
+	db.find("dingdan", whereobj, res, function (err, result, db) {
+		console.log("查找数据")
+		if (err) {
+			console.log("获取失败")
+		} else {
+			res.send(result);
+			db.close();
+		}
+	})
+})
+//删除订单
+app.post("/removedingdan", function (req, res) {
+	var whereobj = req.body;
+	console.log("whereobj:", whereobj)
+	db.deleteById("dingdan", whereobj, res, function (err, result, db) {
+		console.log("查找数据")
+		if (err) {
+			console.log("删除失败")
+		} else {
+			console.log("aaa", result);
+			res.send(result);
+			db.close();
+		}
+	})
+})
 //admin后台管理系统
+
+
+
 //login
 app.post("/adminlogin", function (req, res) {
 	var whereobj = req.body;
@@ -346,6 +409,135 @@ app.post("/adminProducts", function (req, res) {
 			console.log("获取失败")
 		} else {
 			res.send(result);
+			db.close();
+		}
+	})
+})
+//更新用户管理数据
+app.post("/gengxinuser", function (req, res) {
+	// console.log("req",res)
+	var whereobj = req.body;
+	console.log("update123:", whereobj)
+	// var obj = whereobj.num;
+	
+	db.updateOne("User", whereobj, res, function (err, result, db) {
+		if (err) {
+			console.log("修改失败")
+		} else {
+			res.send(result);
+			console.log("更新result:", result.result)
+			db.close();
+		}
+	})
+	// Comments.update({description:req.body.description},{$push:{"comments":req.body.value}});
+})
+//删除用户管理中的数据
+app.post("/removeuser", function (req, res) {
+	var whereobj = req.body;
+	console.log("whereobj:", whereobj)
+	db.deleteById("User", whereobj, res, function (err, result, db) {
+		console.log("查找数据")
+		if (err) {
+			console.log("删除失败")
+		} else {
+			console.log("aaa", result);
+			res.send(result);
+			db.close();
+		}
+	})
+})
+//删除订单
+app.post("/removedingdan", function (req, res) {
+	var whereobj = req.body;
+	console.log("whereobj:", whereobj)
+	db.deleteById("dingdan", whereobj, res, function (err, result, db) {
+		console.log("查找数据")
+		if (err) {
+			console.log("删除失败")
+		} else {
+			console.log("aaa", result);
+			res.send(result);
+			db.close();
+		}
+	})
+})
+//删除商品管理
+app.post("/removeproducts", function (req, res) {
+	var whereobj = req.body;
+	console.log("whereobj:", whereobj)
+	db.deleteById("Products", whereobj, res, function (err, result, db) {
+		console.log("查找数据")
+		if (err) {
+			console.log("删除失败")
+		} else {
+			console.log("aaa", result);
+			res.send(result);
+			db.close();
+		}
+	})
+})
+//订单管理
+app.post("/admindingdan", function (req, res) {
+	// console.log("req",res)
+	var whereobj = req.body;
+	console.log("whereobj:", whereobj)
+	db.find("dingdan", whereobj, res, function (err, result, db) {
+		console.log("查找数据")
+		if (err) {
+			console.log("获取失败")
+		} else {
+			res.send(result);
+			db.close();
+		}
+	})
+})
+//更新订单管理
+app.post("/gengxindingdan", function (req, res) {
+	// console.log("req",res)
+	var whereobj = req.body;
+	console.log("update123:", whereobj)
+	// var obj = whereobj.num;
+	
+	db.updateOne("dingdan", whereobj, res, function (err, result, db) {
+		if (err) {
+			console.log("修改失败")
+		} else {
+			res.send(result);
+			console.log("更新result:", result.result)
+			db.close();
+		}
+	})
+	// Comments.update({description:req.body.description},{$push:{"comments":req.body.value}});
+})
+//更新商品管理
+app.post("/gengxinproducts", function (req, res) {
+	// console.log("req",res)
+	var whereobj = req.body;
+	console.log("update123:", whereobj)
+	// var obj = whereobj.num;
+	
+	db.updateOne("Products", whereobj, res, function (err, result, db) {
+		if (err) {
+			console.log("修改失败")
+		} else {
+			res.send(result);
+			console.log("更新result:", result.result)
+			db.close();
+		}
+	})
+	// Comments.update({description:req.body.description},{$push:{"comments":req.body.value}});
+})
+//新增商品管理
+app.post("/insertProducts", function (req, res) {
+	// console.log("req",res)
+	var whereobj = req.body;
+	console.log("whereobj123:", whereobj)
+	db.insertOne("Products", whereobj, res, function (err, result, db) {
+		if (err) {
+			console.log("添加失败")
+		} else {
+			//			res.send(result);
+			console.log("result:", result.result)
 			db.close();
 		}
 	})

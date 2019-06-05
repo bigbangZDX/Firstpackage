@@ -17,8 +17,8 @@
     </div>
     <div class="si">
       <div class="si1"  @click="youhui()"><img src="../../../img/sq.png" alt=""><p>优惠</p></div>
-      <div class="si1"><img src="../../../img/zyap.png" alt=""><p>订单</p></div>
-      <div class="si1"><img src="../../../img/q.png" alt=""><p>红包</p></div>
+      <div class="si1" @click="dingdan()"><img src="../../../img/zyap.png" alt=""><p>订单</p></div>
+      <div class="si1" @click="hb()"><img src="../../../img/q.png" alt=""><p>红包</p></div>
       <div class="si1" @click="hehe()"><img src="../../../img/sc.png" alt=""><p>收藏</p></div>
     </div>
     <div class="tu">
@@ -78,6 +78,14 @@ export default {
     hehe(){
        this.$router.push(
         { name:'aixin'})
+    },
+    dingdan(){
+                      this.$router.push({ name: "dingdan",})
+
+    },
+    hb(){
+                      this.$router.push({ name: "money",})
+
     }
   },
   mounted(){

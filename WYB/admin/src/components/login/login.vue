@@ -1,7 +1,7 @@
 <template>
   <div class="loginPage">
     <div class="loginBox flexCenter">
-      <h2>无忧宝贝后台管理系统</h2>
+      <h2>高端母婴产品销售App后台管理系统</h2>
       <div class="flexBox w350">
         <el-input placeholder="请输入用户名" v-model="admin" :clearable="true" style="width:80%;margin-bottom:10px;margin-left:50px;margin-top:35px;"></el-input>
         <el-input placeholder="请输入密码" v-model="pass" :clearable="true" style="width:80%;margin-bottom:20px;margin-left:50px"></el-input>

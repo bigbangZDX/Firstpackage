@@ -3,7 +3,7 @@
     <!-- <div class="s1"><img src="../../../img/ss.png" alt="" />
    <input type="text" placeholder="请输入您要搜索的商品" />
     </div>-->
-    <mt-search v-model="searchValue" cancel-text="搜索" placeholder="请输入搜索的名称..."></mt-search>
+    <mt-search v-model="searchValue" cancel-text="搜索" placeholder="请输入搜索的名称..." ></mt-search>
     <div class="products" >
         <div class="pro" >
           <div class="tu23" v-for="(item,index) in products" :key="index" @click="tt(index,item)"> 
@@ -66,7 +66,6 @@ export default {
       console.log("newvs", newvs);
       console.log("oldvs", oldvs);
       if (oldvs) {
-        // this.getList();
         console.log(12345);
         const url = "http://localhost:3000/searchshopcarList";
         // var params = new URLSearchParams();
@@ -92,17 +91,16 @@ export default {
               .css("width", "100%");
               $(".tab").css("position","fixed").css("background-color","white")
             this.products = res.data;
+          }else{
+            Toast({
+            message: "抱歉！没有相关内容...",
+            position: "middle",
+            duration: 3000,
+            className: "toasts"
+          });
           }
         });
       }
-      // else if(newvs==""){
-      //               Toast({
-      //       message: "请输入搜索的关键字",
-      //       position: "middle",
-      //       duration: 2000,
-      //       className: "toasts"
-      //     });
-      // }
     }
   }
 };
@@ -121,48 +119,6 @@ div#shouye {
   width: 105%;
   margin-left: -8px;
 }
-/* body{
-  padding: 0px;
-  margin: 0px!important;
-} */
-/*
-  div.s1{
-  width: 100%;
-  height: 45px;
-  background: white;
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  border: 1px solid rgb(202, 198, 198);
-} */
-/* .s1 input{
-   width: 85%;
-   height: 25px;
-   margin-top:-30px;
-   margin-left: 35px;
-   border:none;
-   border: 1px solid rgb(206, 204, 204);
-   border-radius: 15px;
-   padding-left: 10px;
-   display: block;
-   background: rgb(236, 234, 234);
-} */
-/* .dibu{
-  width: 100%;
-  height: 45px;
-  border: 1px solid red;
-  position: fixed;
-  bottom:20px;
-  background: red
-} */
-/* .s1 img{
-  width: 25px;
-  height: 25px;
-  display: inline-block;
-  padding-top: 9px;
-  margin-left: 6px;
-} */
-
 .pro {
   width: 100%;
   /* height:500px; */

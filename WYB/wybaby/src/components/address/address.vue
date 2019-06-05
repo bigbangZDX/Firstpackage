@@ -6,9 +6,9 @@
         返回
       </span>收货地址
     </div>
-    编辑地址：<br>
+    <span style="margin-left:20px;">编辑地址</span>：<br>
     <textarea rows="6" cols="40" style="margin-left:70px;" class="t"></textarea>
-    <button style="float:right" @click="bc()">保存</button>
+    <button style="float:right;margin-right:120px;" @click="BCaddress()">新建收货地址</button>
     <div class="text-con" style="margin-top:60px;">
 
     </div>
@@ -33,10 +33,12 @@ export default {
       // window.location.href='/mine';
      //   this.aa=false
     },
-    bc(){
+    BCaddress(){
         // $(".t").val()="";
-        $(".text-con").append('<p style="border:1px solid red;margin-left:10px">'+'地址：'+'<br>'+$(".t").val()+'</p>');
-       
+      var m=100;
+      m++
+        $(".text-con").append('<p style="margin-left:10px;background-color:white;height:110px">'+'用户:'+m+'<br>'+$(".t").val()+'<span style="float:right;color:gray">15601536982<br>删除<br>设置为默认地址</span>'+'</p>');
+      
     }
   },
   created(){

@@ -6,10 +6,8 @@
       <div class="buy41">
         <img :src="avv">
       </div>
-      <div class="buy42" style="margin-top:-80px;margin-left:105px"> 
-          {{description}}
-      </div>
-      <div style="margin-left:105px;margin-top:20px;"> ¥{{price}}</div>
+      <div class="buy42" style="margin-top:-80px;margin-left:105px">{{description}}</div>
+      <div style="margin-left:105px;margin-top:20px;">¥{{price}}</div>
     </div>
     <div class="buy2" @click="money()">
       <img src="../../../img/qq.png" alt>
@@ -17,7 +15,7 @@
       <img src="../../../img/wx.png" alt>
     </div>
     <div class="buy3" @click="goback()">
-      <el-button type="danger" round>返回首页</el-button>
+      <el-button type="danger" round>提交订单</el-button>
     </div>
   </div>
 </template>
@@ -31,19 +29,55 @@ export default {
   props: ["gobuy"],
   data() {
     return {
-      xiangqing:{},
-      avv:"",
-      price:"",
-      description:""
-
+      xiangqing: {},
+      avv: "",
+      price: "",
+      description: "",
+      
     };
   },
   methods: {
+     
     goback() {
       this.$router.push({
         name: "home"
       });
       //   window.location.href='/home';
+      Toast({
+        message: "提交订单成功",
+        position: "middle",
+        duration: 1000,
+        className: "toasts"
+      });
+    
+      
+      var params = new URLSearchParams();
+      var time = new Date();
+      var y = time.getFullYear();
+      var m = time.getMonth() + 1;
+      m = m < 10 ? "0" + m : m;
+      var d = time.getDate();
+      d = d < 10 ? "0" + d : d;
+      var h = time.getHours();
+      h = h < 10 ? "0" + h : h;
+      var minute = time.getMinutes();
+      minute = minute < 10 ? "0" + minute : minute;
+      var second = time.getSeconds();
+      second = second < 10 ? "0" + second : second;
+      var shijian= y + "-" + m + "-" + d + " " + h + ":" + minute + ":" + second;
+    var ph = sessionStorage.getItem("phone");
+     
+      this.$axios({
+        method: "post",
+        url: "http://localhost:3000/insertdingdan",
+        data: {
+          phone:ph,
+          description: this.description,
+          price: this.price,
+          pic: this.avv,
+          time: shijian
+        }
+      }).then(res => {});
     },
     money() {
       Toast({
@@ -72,28 +106,26 @@ export default {
         var array = this.home.miao;
         console.log(array[id]);
         this.xiangqing = array[id];
-        this.avv=array[id].av;
-        this.price=array[id].price;
-        this.description=array[id].description
+        this.avv = array[id].av;
+        this.price = array[id].price;
+        console.log(typeof this.price);
+        this.description = array[id].description;
       } else if (name == "新品上架") {
         this.home = res.data.home.supports[1];
         var array = this.home.miao;
         console.log(array[id]);
         this.xiangqing = array[id];
-        this.avv=array[id].av
-        this.price=array[id].price;
-        this.description=array[id].description
-
+        this.avv = array[id].av;
+        this.price = array[id].price;
+        this.description = array[id].description;
       } else if (name == "销量排行") {
         this.home = res.data.home.supports[2];
         var array = this.home.miao;
         console.log(array[id]);
         this.xiangqing = array[id];
-        this.avv=array[id].av;
-        this.price=array[id].price;
-        this.description=array[id].description
-
-
+        this.avv = array[id].av;
+        this.price = array[id].price;
+        this.description = array[id].description;
       }
     });
   }
@@ -147,7 +179,7 @@ export default {
   height: 90px;
   border: 1px solid rgb(219, 217, 217);
 }
-.buy41 img{
+.buy41 img {
   width: 90px;
   height: 90px;
 }

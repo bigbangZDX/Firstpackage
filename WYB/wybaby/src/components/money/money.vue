@@ -1,19 +1,19 @@
 <template>
-  <div class="youhui">
-    <div class="d1" style="font-weight:700;">
+  <div class="money">
+    <div class="d1" style="font-weight:700">
       <span @click="fn1()">
         <img src="http://www.51babies.com/h5/image/nav-left.png" class="jt"> 返回
-      </span>优惠活动
+      </span>红包
     </div>
+    <div class="lll" @click="hb()">
     <div class="hb">
-      <img src="http://www.51babies.com/h5/image/pic_active@2x.png" alt>
-      <div class="hb1">
-        <div>四月优惠活动</div>
-        <div style="color:red;font-size:15px">满¥5,00.0打9.5折</div>
-        <div style="color:gray;font-size:13px;">部分品牌可用</div>
-        <div style="color:gray;font-size:13px;">2018-11-8 至 2019-4-1</div>
-      </div>
+      <img src="../../../img/timg.jpg" alt>
+     <div class="hb1">10元</div>
     </div>
+     <div class="hb">
+      <img src="../../../img/timg.jpg" alt>
+     <div class="hb1">50元</div>
+    </div></div>
     <div style="text-align:center;margin-top:20px;">全部加载完毕</div>
   </div>
 </template>
@@ -22,14 +22,22 @@
 import { Toast } from "mint-ui";
 
 export default {
-  name: "youhui",
-  props: ["youhui"],
+  name: "money",
+  props: ["money"],
   data() {
     return {};
   },
   methods: {
     fn1() {
       this.$router.push({ name: "home" });
+    },
+    hb(){
+        Toast({
+        message: "红包已过期！",
+        position: "middle",
+        duration: 1000,
+        className: "toasts"
+      });
     }
   }
 };
@@ -40,7 +48,7 @@ export default {
 /* div.fenlei{
   background: #f6f6f6!important;
 } */
-.youhui {
+.money {
   width: 100%;
   height: 100%;
   background: #f3efef;
@@ -75,21 +83,28 @@ export default {
 }
 .hb {
   width: 100%;
-  height: 160px;
-  border: 1px solid gray;
+  height: 100px;
+  border-bottom: 1px solid gray;
   background: white;
+  /* margin-top: 65px; */
+  display: flex;
+  justify-content:flex-start;
+}
+.lll{
   margin-top: 65px;
+
 }
 .hb img {
-  width: 160px;
-  height: 160px;
+  width:135px;
+  height: 100px;
+  border-radius: 10px;
 }
 .hb1{
-    width: 40%;
-    height:150px;
-    /* border: 1px solid gray; */
-    margin-top: -160px;
-    margin-left: 170px;
-    
+    width: 100px;
+    height: 100px;
+    /* border: 1px solid red; */
+    text-align: center;
+    line-height: 170px;
+
 }
 </style>

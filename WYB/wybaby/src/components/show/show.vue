@@ -128,7 +128,14 @@ export default {
       this.bb = false;
     },
     aixin(o) {
-      this.kong = false;
+      if(sessionStorage.getItem('sid')){
+        Toast({
+        message: "已收藏",
+        position: "middle",
+        duration: 1000,
+        className: "toasts"
+      });
+this.kong = false;
       console.log(o);
       var params = new URLSearchParams();
       this.$axios({
@@ -142,6 +149,12 @@ export default {
       }).then(res => {
         console.log(res)
       });
+      }else{
+        this.$router.push({name:"deng"})
+
+      }
+
+      
     },
     aixin1() {
       this.kong = true;
@@ -150,7 +163,8 @@ export default {
       $(".wc2")
         .css("background", "red")
         .css("color", "white");
-      Toast({
+      if(sessionStorage.getItem('sid')){
+          Toast({
         message: "已加入购物车！",
         position: "middle",
         duration: 2000,
@@ -174,6 +188,11 @@ export default {
       }).then(res => {
         console.log("shopcarres:", res.data);
       });
+      }else{
+        this.$router.push({name:"deng"})
+
+      }
+      
     },
     md1() {
       $(".wc2")
