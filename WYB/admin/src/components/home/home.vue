@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <el-container>
-      <el-header>无忧宝贝后台管理系统</el-header><span class="goback" @click="go()">退出</span>
+      <el-header>无忧宝贝后台管理系统</el-header><span class="goback" @click="go()" style="font-weight:700">退出</span>
       <el-main>
         <el-tabs :tab-position="tabPosition" style="height: 1920px;">
           <el-tab-pane label="用户管理">
@@ -11,6 +11,8 @@
             >
               <el-table-column label="用户名（Phone）" prop="num"></el-table-column>
               <el-table-column label="密码（Password）" prop="pass"></el-table-column>
+              <el-table-column label="用户头像（Pic）" prop="imageUrl"></el-table-column>
+
               <el-table-column align="right">
                 <template slot="header" slot-scope="scope">
                   <el-input v-model="search" size="mini" placeholder="输入用户名关键字搜索"/>
@@ -122,6 +124,7 @@ export default {
     return {
       admin: "",
       pass: "",
+      imageUrl:"",
       tabPosition: "left",
       tableData: [
       ],

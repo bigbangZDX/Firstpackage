@@ -1,7 +1,7 @@
 <template>
   <div class="mine">
     <div class="w1">个人中心</div>
-    <div class="w2"><div class="w21" title="上传图片"><img src="../../../img/11.jpg" alt="" ></div><p>{{ph}}  欢迎您！</p><p @click="zhuce" >
+    <div class="w2"><div class="w21" title="上传图片"><img :src="imgurl" alt="" ></div><p>{{ph}}  欢迎您！</p><p @click="zhuce" >
       <!-- <router-link to="/deng">注册用户</router-link><router-view></router-view> -->
       登录用户
       </p></div>
@@ -46,7 +46,9 @@ export default {
   data () {
     return {
       user:"",
-      ph:""
+      ph:"",
+      imgurl:''
+     
     }
   },
   methods:{
@@ -80,11 +82,17 @@ export default {
   mounted(){
     var user = this.$route.query.user;
          this.user=user
-         console.log(document.cookie)
-         var mes=document.cookie;
-         var ph=mes.split("=")[1];
-         this.ph=ph
-         console.log(ph)
+        //  console.log(document.cookie)
+        //  var mes=document.cookie;
+        //  var ph=mes.split("=")[1];
+        //  this.ph=ph
+        //  console.log(ph)
+        var ph=localStorage.getItem("phone")
+        this.ph=ph
+        console.log(ph)
+        var imgurl=localStorage.getItem("imgUrl")
+        console.log(imgurl)
+        this.imgurl=imgurl
   }
 }
 </script>

@@ -35,7 +35,8 @@ export default {
      //   this.aa=false
     },
     save(){
-        var params = new URLSearchParams();
+      if($(".jiu").val().length==6&&$(".xin").val().length==6&&$(".que").val().length==6){
+   var params = new URLSearchParams();
       this.$axios({
       method: "post",
       url: "http://localhost:3000/updatePass",
@@ -55,6 +56,15 @@ export default {
           className: "toasts"
         });
     })
+      }else{
+        Toast({
+            message: "字符长度均为六位！",
+            position: "middle",
+            duration: 2000,
+            className: "toasts"
+          });
+      }
+     
     }
   },
   created(){
