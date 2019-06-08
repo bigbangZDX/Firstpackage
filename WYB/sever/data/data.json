@@ -1,101 +1,100 @@
-{
-   "_id": {
-      "$oid": "5be969b72d9a6b5898e4f7a7"
-   },
-   "description": "Alzipmat韩国爬行垫缤纷SE",
-   "comments": [
-      "实惠！",
-      "舒服。。"
-   ]
-}
-{
-   "_id": {
-      "$oid": "5be96a8b2d9a6b5898e4f7ae"
-   },
-   "description": "Alzipmat韩国爬行垫硅胶S",
-   "comments": [
-      "实惠！",
-      "舒服。。"
-   ]
-}
-{
-   "_id": {
-      "$oid": "5be96a982d9a6b5898e4f7af"
-   },
-   "description": "Alzipmat韩国爬行垫时尚G",
-   "comments": [
-      "实惠！",
-      "舒服。。"
-   ]
-}
-{
-   "_id": {
-      "$oid": "5be96aa72d9a6b5898e4f7b0"
-   },
-   "description": "Alzipmat韩国软体围栏G",
-   "comments": [
-      "实惠！",
-      "舒服。。"
-   ]
-}
-{
-   "_id": {
-      "$oid": "5be96af52d9a6b5898e4f7b1"
-   },
-   "description": "Grosmimi韩国吸管杯200ml",
-   "comments": [
-      "实惠！",
-      "舒服。。"
-   ]
-}
-{
-   "_id": {
-      "$oid": "5be96b042d9a6b5898e4f7b2"
-   },
-   "description": "Upang韩国紫外线消毒柜新款",
-   "comments": [
-      "实惠！",
-      "舒服。。"
-   ]
-}
-{
-   "_id": {
-      "$oid": "5be96b122d9a6b5898e4f7b3"
-   },
-   "description": "Alzipmat韩国淘气狗沙发",
-   "comments": [
-      "实惠！",
-      "舒服。。"
-   ]
-}
-{
-   "_id": {
-      "$oid": "5be96b312d9a6b5898e4f7b5"
-   },
-   "description": "Haenimtoy韩国摩登围栏G+",
-   "comments": [
-      "实惠！",
-      "舒服。。"
-   ]
-}
-{
-      "_id": {
-         "$oid": "5be96b1f2d9a6b5898e4f7b4"
+[
+   {
+      
+         "name": "地垫专区",
+         "f": [
+            "全部",
+            "Alzipmat缤纷系",
+            "Alzipmat硅胶系",
+            "Alzipmat时尚系",
+            "Alzipmat动物园系",
+            "Alzipmat拼接垫",
+            "Alzipmat折叠椅垫"
+         ]
       },
-      "description": "Alzipmat韩国墙贴围栏",
-      "comments": [
-         "实惠！",
-         "舒服。。"
-      ]
-   }
-{
-      "_id": {
-         "$oid": "5be96a272d9a6b5898e4f7aa"
+      {
+         "name": "围栏专区",
+         "f": [
+            "全部1",
+            "Alzipmat缤纷系",
+            "Alzipmat硅胶系",
+            "Alzipmat时尚系",
+            "Alzipmat动物园系",
+            "Alzipmat拼接垫",
+            "Alzipmat折叠椅垫"
+         ]
       },
-      "description": "Alzipmat韩国爬行垫缤纷SG",
-      "comments": [
-         "实惠！",
-         "舒服。。"
-      ]
-   }
-  
+      {
+         "name": "宝宝沙发",
+         "f": [
+            "全部2",
+            "Alzipmat缤纷系",
+            "Alzipmat硅胶系",
+            "Alzipmat时尚系",
+            "Alzipmat动物园系",
+            "Alzipmat拼接垫",
+            "Alzipmat折叠椅垫"
+         ]
+      },
+      {
+         "name": "游乐专区",
+         "f": [
+            "全部3",
+            "Alzipmat缤纷系",
+            "Alzipmat硅胶系",
+            "Alzipmat时尚系",
+            "Alzipmat动物园系",
+            "Alzipmat拼接垫",
+            "Alzipmat折叠椅垫"
+         ]
+      },
+      {
+         "name": "宝宝水杯",
+         "f": [
+            "全部4",
+            "Alzipmat缤纷系",
+            "Alzipmat硅胶系",
+            "Alzipmat时尚系",
+            "Alzipmat动物园系",
+            "Alzipmat拼接垫",
+            "Alzipmat折叠椅垫"
+         ]
+      },
+      {
+         "name": "紫外消毒",
+         "f": [
+            "全部5",
+            "Alzipmat缤纷系",
+            "Alzipmat硅胶系",
+            "Alzipmat时尚系",
+            "Alzipmat动物园系",
+            "Alzipmat拼接垫",
+            "Alzipmat折叠椅垫"
+         ]
+      },
+      {
+         "name": "宝宝洗护",
+         "f": [
+            "全部6",
+            "Alzipmat缤纷系",
+            "Alzipmat硅胶系",
+            "Alzipmat时尚系",
+            "Alzipmat动物园系",
+            "Alzipmat拼接垫",
+            "Alzipmat折叠椅垫"
+         ]
+      },
+      {
+         "name": "宝宝腰凳",
+         "f": [
+            "全部7",
+            "Alzipmat缤纷系",
+            "Alzipmat硅胶系",
+            "Alzipmat时尚系",
+            "Alzipmat动物园系",
+            "Alzipmat拼接垫",
+            "Alzipmat折叠椅垫"
+         ]
+      }
+   
+]

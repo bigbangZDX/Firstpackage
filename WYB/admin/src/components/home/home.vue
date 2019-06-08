@@ -180,13 +180,18 @@
             </el-form>
           </el-tab-pane>
 
+
+
+
           <el-tab-pane label="分类管理">
             <el-table
-              :data="tableData2.filter(data => !search || data.description.toLowerCase().includes(search.toLowerCase()))"
+              :data="tableData2.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
               style="width: 100%"
+              height="500"
+              border
             >
-              <el-table-column label="商品分类名" prop="description"></el-table-column>
-              <el-table-column label="分类下所有商品" prop="price"></el-table-column>
+              <el-table-column label="商品分类名" prop="name"></el-table-column>
+              <el-table-column label="分类下所有商品" prop="f"></el-table-column>
 
               <el-table-column align="right">
                 <template slot="header" slot-scope="scope">
@@ -200,15 +205,45 @@
                     @click="handleDelete2(scope.$index, scope.row)"
                     @click.native.prevent="handleDelete2(scope.$index, tableData2)"
                   >Delete</el-button>
+                  <el-dialog
+                    title
+                    :visible.sync="editFormVisible2"
+                    :close-on-click-modal="false"
+                    class="edit-form"
+                    :before-close="handleClose2"
+                  >
+                    <el-form
+                      :model="tableData2"
+                      label-width="80px"
+                      :rules="tableData2"
+                      ref="tableData2"
+                    >
+                      <el-form-item label="商品分类名" prop="name">
+                        <el-input v-model="tableData2.name" auto-complete="off"></el-input>
+                      </el-form-item>
+                      <el-form-item label="分类下的信息" prop="f">
+                        <el-input v-model="tableData2.f" auto-complete="off"></el-input>
+                      </el-form-item>
+                    </el-form>
+                    <div slot="footer" class="dialog-footer">
+                      <el-button @click.native="handleCancel2()">取消</el-button>
+                      <el-button type="primary" @click.native="handleUpdate2(tableData2)">更新</el-button>
+                    </div>
+                  </el-dialog>
                 </template>
               </el-table-column>
             </el-table>
+            <div style="margin-left:-1220px;margin-top:-65px">{{"数据总条数："+tableData2.length}}</div>
           </el-tab-pane>
+
+
+
 
           <el-tab-pane label="订单管理">
             <el-table
               :data="tableData3.filter(data => !search || data._id.toLowerCase().includes(search.toLowerCase()))"
               border
+              height="600"
               style="width: 100%"
             >
               <el-table-column label="订单号" prop="_id"></el-table-column>
@@ -300,7 +335,7 @@ export default {
       search: "",
       editFormVisible: false, //默认不显示编辑弹层
       editFormVisible1: false, //默认不显示编辑弹层
-
+      editFormVisible2: false, //默认不显示编辑弹层
       editFormVisible3: false, //默认不显示编辑弹层
 
       // form: {
@@ -365,7 +400,12 @@ export default {
       var in3 = b.number;
       const url = "http://localhost:3000/insertProducts";
       // var params = new URLSearchParams();
-      if (this.imgUrl1 != ""&&in1.length!=0&&in2.length!=0&&in3.length!=0) {
+      if (
+        this.imgUrl1 != "" &&
+        in1.length != 0 &&
+        in2.length != 0 &&
+        in3.length != 0
+      ) {
         this.$axios({
           method: "post",
           url: url,
@@ -386,7 +426,6 @@ export default {
             className: "toasts"
           });
           this.reload();
-
         });
       } else {
         Toast({
@@ -436,6 +475,10 @@ export default {
       this.editFormVisible1 = true;
       this.tableData1 = Object.assign({}, row); //这句是关键！！！
     },
+    handleEdit2(index, row) {
+      this.editFormVisible2 = true;
+      this.tableData2 = Object.assign({}, row); //这句是关键！！！
+    },
     handleEdit3(index, row) {
       this.editFormVisible3 = true;
       this.tableData3 = Object.assign({}, row); //这句是关键！！！
@@ -451,6 +494,11 @@ export default {
     location.reload();*/
       this.editFormVisible1 = false;
     },
+    handleClose2(done) {
+      /*done();
+    location.reload();*/
+      this.editFormVisible2 = false;
+    },
     handleClose3(done) {
       /*done();
     location.reload();*/
@@ -463,6 +511,10 @@ export default {
     },
     handleCancel1(formName) {
       this.editFormVisible1 = false;
+      // this.reload();
+    },
+    handleCancel2(formName) {
+      this.editFormVisible2 = false;
       // this.reload();
     },
     handleCancel3(formName) {
@@ -501,6 +553,42 @@ export default {
         }).then(res => {
           console.log(res.data);
           this.tableData = res.data;
+        });
+      });
+      // this.reload()
+    },
+    //点击更新
+    handleUpdate2(forName) {////////////////////////////////////////////////////////////分类的修改更新
+      //更新的时候就把弹出来的表单中的数据写到要修改的表格中
+      var postData = {
+        name: forName.name,
+        f: forName.f
+      };
+      console.log(forName);
+      //这里再向后台发个post请求重新渲染表格数据
+      this.editFormVisible2 = false;
+      var params = new URLSearchParams();
+
+      this.$axios({
+        method: "post",
+        url: "http://localhost:3000/gengxinFenlei",
+        data: {
+          _id: forName._id,
+          name: forName.name,
+          f: forName.f
+        }
+      }).then(res => {
+        // console.log(res.data);
+        // this.tableData = res.data;
+        var params = new URLSearchParams();
+
+        this.$axios({
+          method: "post",
+          url: "http://localhost:3000/adminFenlei",
+          data: params
+        }).then(res => {
+          console.log(res.data);
+          this.tableData2 = res.data;
         });
       });
       // this.reload()
@@ -636,6 +724,30 @@ export default {
         });
       });
     },
+    handleDelete2(index, row) {
+      console.log(index, row);
+      // row.splice(index, 1);
+      this.$axios({
+        method: "post",
+        url: "http://localhost:3000/removeFenlei",
+        data: {
+          _id: row._id
+        }
+      }).then(res => {
+        // console.log(res.data);
+        // this.tableData = res.data;
+        var params = new URLSearchParams();
+
+        this.$axios({
+          method: "post",
+          url: "http://localhost:3000/adminFenlei",
+          data: params
+        }).then(res => {
+          console.log(res.data);
+          this.tableData2 = res.data;
+        });
+      });
+    },
     handleDelete3(index, row) {
       console.log(index, row);
       // row.splice(index, 1);
@@ -718,6 +830,16 @@ export default {
     }).then(res => {
       console.log(res.data);
       this.tableData3 = res.data;
+    });
+    var params = new URLSearchParams();
+
+    this.$axios({
+      method: "post",
+      url: "http://localhost:3000/adminFenlei",
+      data: params
+    }).then(res => {
+      console.log(res.data);
+      this.tableData2 = res.data;
     });
   }
 };

@@ -542,3 +542,33 @@ app.post("/insertProducts", function (req, res) {
 		}
 	})
 })
+//分类管理
+app.post("/adminFenlei", function (req, res) {
+	// console.log("req",res)
+	var whereobj = req.body;
+	console.log("whereobj:", whereobj)
+	db.find("Fenlei", whereobj, res, function (err, result, db) {
+		console.log("查找数据")
+		if (err) {
+			console.log("获取失败")
+		} else {
+			res.send(result);
+			db.close();
+		}
+	})
+})
+//删除分类管理
+app.post("/removeFenlei", function (req, res) {
+	var whereobj = req.body;
+	console.log("whereobj:", whereobj)
+	db.deleteById("Fenlei", whereobj, res, function (err, result, db) {
+		console.log("查找数据")
+		if (err) {
+			console.log("删除失败")
+		} else {
+			console.log("aaa", result);
+			res.send(result);
+			db.close();
+		}
+	})
+})
