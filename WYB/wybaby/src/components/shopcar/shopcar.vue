@@ -36,7 +36,10 @@
     </div>
     <div class="g2">
       <input type="checkbox" class="ggg" @click="checkAll()">全选
-      <div class="p1">总价：¥<span style="font-weight:600;color:red"> {{checktotle}}</span></div>
+      <div class="p1">
+        总价：¥
+        <span style="font-weight:600;color:red">{{checktotle}}</span>
+      </div>
       <div class="p3" @click="del()">删除</div>
       <div class="p2" @click="maidan()">结算</div>
     </div>
@@ -52,12 +55,12 @@ export default {
   data() {
     return {
       shopcarList: [],
-      r:"",
-      rr:0,
-      toto:0
+      r: "",
+      rr: 0,
+      toto: 0
     };
   },
-  inject:['reload'],//注入reload方法
+  inject: ["reload"], //注入reload方法
   created() {
     $("#shouye").css("display", "none");
     const url = "http://localhost:3000/getshopcarList";
@@ -75,24 +78,24 @@ export default {
         "Content-Type": "application/json; charset=UTF-8"
       }
     }).then(res => {
-      if (res.data.length!=0) {
+      if (res.data.length != 0) {
         console.log("getshopcarList:", res.data);
         this.shopcarList = res.data;
         $(".k").hide();
-      } else if(res.data.length==0){
+      } else if (res.data.length == 0) {
         $(".k").show();
       }
     });
   },
-  computed:{
-    checktotle:function(){
-      this.toto=0;
-      for(var m=0;m<this.shopcarList.length;m++){
-             this.toto=this.toto+this.shopcarList[m].price*this.shopcarList[m].number;
-              console.log(this.toto)
+  computed: {
+    checktotle: function() {
+      this.toto = 0;
+      for (var m = 0; m < this.shopcarList.length; m++) {
+        this.toto =
+          this.toto + this.shopcarList[m].price * this.shopcarList[m].number;
+        console.log(this.toto);
       }
       return this.toto;
-     
     }
   },
   methods: {
@@ -113,15 +116,12 @@ export default {
         });
       } else {
         //  $(".text").val(a);
-        ele.value = a;
-         //传入index参数来判断是点击哪行的数量，改变commonList对应的数量减一，这里
-                //最小值为1所以当为1的时候就跳出判断语句
-                if(this.shopcarList[index].number == 1) {
-                    return;
-                } else {
-                    this.shopcarList[index].number = this.shopcarList[index].number - 1
-                }
-       
+        ele.value = a; //传入index参数来判断是点击哪行的数量，改变commonList对应的数量减一，这里 //最小值为1所以当为1的时候就跳出判断语句
+        if (this.shopcarList[index].number == 1) {
+          return;
+        } else {
+          this.shopcarList[index].number = this.shopcarList[index].number - 1;
+        }
       }
     },
     add(item, index) {
@@ -132,22 +132,16 @@ export default {
       var a = ele.value;
       a++;
       //  $(".text").val(a);
-      ele.value = a;
-                            
-                //传入index参数来判断是点击哪行的数量，改变commonList对应的数量加一
-                this.shopcarList[index].number = this.shopcarList[index].number + 1
-            
-            //
-           
-               
+      ele.value = a; //传入index参数来判断是点击哪行的数量，改变commonList对应的数量加一
 
+      this.shopcarList[index].number = this.shopcarList[index].number + 1; //
     },
     dell(item, index) {
       // console.log($(this))
       console.log(index);
-      console.log(item._id)
-      this.r=item._id;
-      this.rr=index;
+      console.log(item._id);
+      this.r = item._id;
+      this.rr = index;
       // this.totle=item.price
       // var toto=this.totle.substring(1)
       // console.log(toto)
@@ -157,7 +151,7 @@ export default {
     },
     //删除
     del() {
-        $(".k").hide();
+      $(".k").hide();
 
       var count = 0;
       var checkarr = document.getElementsByClassName("check");
@@ -167,13 +161,13 @@ export default {
           count++;
         }
       }
-       const url = "http://localhost:3000/delshopcarList";
+      const url = "http://localhost:3000/delshopcarList";
       // var params = new URLSearchParams();
       this.$axios({
         method: "post",
         url: url,
         data: {
-          _id:this.r
+          _id: this.r
         },
         headers: {
           "Content-Type": "application/json; charset=UTF-8"
@@ -191,28 +185,25 @@ export default {
           className: "toasts"
         });
       }
-      this.reload()//直接调用
-
+      this.reload(); //直接调用
     },
     checkAll() {
-      var ggg = $(".ggg")
+      var ggg = $(".ggg");
       var checkarr = document.getElementsByClassName("check");
       if (ggg[0].checked) {
         for (var j = 0; j < checkarr.length; j++) {
           checkarr[j].checked = true;
-          console.log(111)
+          console.log(111);
         }
-      }else{
+      } else {
         for (var k = 0; k < checkarr.length; k++) {
           checkarr[k].checked = false;
         }
       }
     },
-    maidan(){
-           this.$router.push({ name: "gobuy"})
+    maidan() {
+      this.$router.push({ name: "gobuy" });
     }
-                      
-
   }
 };
 </script>

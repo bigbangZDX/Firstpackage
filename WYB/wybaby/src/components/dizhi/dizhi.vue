@@ -1,5 +1,5 @@
 <template>
-  <div class="address" >
+  <div class="dizhi" >
     <div class="d1">
       <span @click="fn1()">
         <!-- <router-link :to="'/mine?t='+(new Date().getTime())">取消</router-link><router-view></router-view> -->
@@ -8,7 +8,7 @@
     </div>
     <span style="margin-left:20px;">编辑地址</span>：<br>
     <textarea rows="6" cols="40" style="margin-left:70px;" class="t"></textarea>
-    <button style="float:right;margin-right:120px;" @click="BCaddress()">新建收货地址</button>
+    <button style="float:right;margin-right:120px;" @click="BCdizhi()">新建收货地址</button>
     <div class="text-con" style="margin-top:60px;">
 
     </div>
@@ -20,11 +20,11 @@
 import { Toast } from "mint-ui";
 
 export default {
-  name: 'address',
-//   props:["address"],
+  name: 'dizhi',
+//   props:["dizhi"],
   data () {
     return {
-       address:[]
+       dizhi:[]
     }
   },
   methods:{
@@ -33,7 +33,7 @@ export default {
       // window.location.href='/mine';
      //   this.aa=false
     },
-    BCaddress(){
+    BCdizhi(){
         // $(".t").val()="";
       var m=100;
       m++
@@ -46,11 +46,11 @@ export default {
 
     //   this.$axios({
     //   method: "post",
-    //   url: "http://localhost:3000/address",
+    //   url: "http://localhost:3000/dizhi",
     //   data:params
     // }).then(res => {
     //     console.log(res);
-    //     this.address=res.data
+    //     this.dizhi=res.data
     // })
   }
 }
@@ -61,7 +61,7 @@ export default {
 /* div.fenlei{
   background: #f6f6f6!important;
 } */
-.address {
+.dizhi {
   width: 100%;
   height: 100%;
   background: #f3efef;

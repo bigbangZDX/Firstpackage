@@ -5,19 +5,21 @@
       <div class="w21" title="上传图片">
         <img :src="imgurl" alt>
       </div>
-      <p><span>{{ph}}</span>, 欢迎您！</p>
+      <p>
+        <span>{{ph}}</span>, 欢迎您！
+      </p>
       <!-- <p @click="zhuce"> -->
-        <!-- <router-link to="/deng">注册用户</router-link><router-view></router-view> -->
-        <!-- 登录用户 -->
+      <!-- <router-link to="/deng">注册用户</router-link><router-view></router-view> -->
+      <!-- 登录用户 -->
       <!-- </p> -->
     </div>
-    <div class="w3">
+    <div class="w3" @click="dingdan()">
       <img src="../../../img/zyap.png">
       <p>我的订单</p>
       <span>查看全部订单></span>
     </div>
     <div class="w4">
-      <div class="w41" @click="gobuy()">
+      <div class="w41" @click="dingdan()">
         <img src="../../../img/yw.png" alt>
         <p>待付款</p>
       </div>
@@ -40,7 +42,7 @@
         <span class="s1">我的收藏</span>
         <span class="s2">></span>
       </div>
-      <div class="w51" @click="address()">
+      <div class="w51" @click="dizhi()">
         <img src="../../../img/dz.png">
         <span class="s1">收货地址</span>
         <span class="s2">></span>
@@ -90,7 +92,8 @@ export default {
     // },
     back() {
       this.$router.push({ name: "deng" });
-      sessionStorage.removeItem("sid")
+      sessionStorage.removeItem("sid");
+      // localStorage.clear();
     },
     help() {
       this.$router.push({ name: "help" });
@@ -98,17 +101,17 @@ export default {
     xiugai() {
       this.$router.push({ name: "updatePass", query: { username: this.user } });
     },
-    gobuy() {
-      this.$router.push({ name: "gobuy" });
+    dingdan() {
+      this.$router.push({ name: "dingdan" });
     },
-    address() {
-      this.$router.push({ name: "address" });
+    dizhi() {
+      this.$router.push({ name: "dizhi" });
     },
     shou() {
       this.$router.push({ name: "aixin" });
     },
     hongbao() {
-      this.$router.push({name: "money"  });
+      this.$router.push({ name: "money" });
     }
   },
   mounted() {
@@ -122,9 +125,9 @@ export default {
     var ph = sessionStorage.getItem("phone");
     this.ph = ph;
     console.log(ph);
-    var i= sessionStorage.getItem("imgUrl");
-    console.log("img",i);
-    this.imgurl=i;
+    var i = localStorage.getItem("imgUrl");
+    console.log("img", i);
+    this.imgurl = i;
   }
 };
 </script>

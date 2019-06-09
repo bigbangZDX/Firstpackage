@@ -95,9 +95,9 @@ export default {
 
       // sessionStorage.setItem('sid', res.data.data.sid); // 设置本地存储信息
 
-      sessionStorage.setItem("imgUrl", this.imageUrl);
+      localStorage.setItem("imgUrl", this.imageUrl);
       console.log(sessionStorage.phone);
-      console.log(sessionStorage.imgUrl);
+      console.log(localStorage.imgUrl);
 
       const url = "http://localhost:3000/login";
       // var params = new URLSearchParams();
@@ -124,7 +124,7 @@ export default {
               className: "toasts"
             });
             // this.$router.push({ name: "mine", query: { user: in1 } });
-            sessionStorage.setItem("sid", res.data.sid); // 设置本地存储信息
+            sessionStorage.setItem("sid", res.data.sid); // 设置本地存储信息,sid是生成的唯一ID
 
             // this.$router.push(this.$route.query.redirect); // 跳转至前一页，this.$route.query.redirect是获取上面传递过来的值
         this.$router.push({name:"home"})

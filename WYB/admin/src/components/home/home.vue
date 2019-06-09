@@ -12,7 +12,7 @@
 
       <el-main>
         <el-tabs :tab-position="tabPosition" style="height:100%;">
-          <el-tab-pane label="用户管理">
+          <el-tab-pane label="用户管理(User)">
             <el-table
               :data="tableData.filter(data => !search || data.num.toLowerCase().includes(search.toLowerCase()))"
               height="400"
@@ -62,7 +62,7 @@
                 </template>
               </el-table-column>
             </el-table>
-            <div style="margin-left:-1220px;margin-top:-65px">{{"数据总条数："+tableData.length}}</div>
+            <div style="margin-left:-1150px;margin-top:-65px">{{"数据总条数："+tableData.length}}</div>
             <el-form :inline="true" :model="formInline" class="demo-form-inline">
               <el-form-item>
                 <el-input v-model="formInline.user" placeholder="用户名(11位数字)"></el-input>
@@ -94,7 +94,7 @@
     <el-input v-model="form.name"></el-input>
           </el-form-item></el-form>-->
 
-          <el-tab-pane label="商品管理">
+          <el-tab-pane label="商品管理(Products)">
             <el-table
               :data="tableData1.filter(data => !search || data.description.toLowerCase().includes(search.toLowerCase()))"
               style="width: 100%"
@@ -151,7 +151,7 @@
                 </template>
               </el-table-column>
             </el-table>
-            <div style="margin-left:-1220px;margin-top:-65px">{{"数据总条数："+tableData1.length}}</div>
+            <div style="margin-left:-1150px;margin-top:-65px">{{"数据总条数："+tableData1.length}}</div>
             <el-form :inline="true" :model="formInline1" class="demo-form-inline">
               <el-form-item style="margin-left:50px">
                 <el-input v-model="formInline1.description" placeholder="商品名称"></el-input>
@@ -183,7 +183,7 @@
 
 
 
-          <el-tab-pane label="分类管理">
+          <el-tab-pane label="分类管理(Fenlei)">
             <el-table
               :data="tableData2.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
               style="width: 100%"
@@ -233,13 +233,13 @@
                 </template>
               </el-table-column>
             </el-table>
-            <div style="margin-left:-1220px;margin-top:-65px">{{"数据总条数："+tableData2.length}}</div>
+            <div style="margin-left:-1150px;margin-top:-65px">{{"数据总条数："+tableData2.length}}</div>
           </el-tab-pane>
 
 
 
 
-          <el-tab-pane label="订单管理">
+          <el-tab-pane label="订单管理(dingdan)">
             <el-table
               :data="tableData3.filter(data => !search || data._id.toLowerCase().includes(search.toLowerCase()))"
               border
@@ -308,7 +308,7 @@
                 </template>
               </el-table-column>
             </el-table>
-            <div style="margin-left:-1220px;margin-top:-65px">{{"数据总条数："+tableData3.length}}</div>
+            <div style="margin-left:-1150px;margin-top:-65px">{{"数据总条数："+tableData3.length}}</div>
           </el-tab-pane>
         </el-tabs>
       </el-main>

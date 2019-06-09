@@ -13,7 +13,7 @@ import youhui from '@/components/youhui/youhui'
 import help from '@/components/help/help'
 import updatePass from '@/components/updatePass/updatePass'
 import deep from '@/components/deep/deep'
-import address from '@/components/address/address'
+import dizhi from '@/components/dizhi/dizhi'
 import aixin from '@/components/aixin/aixin'
 import money from '@/components/money/money'
 import dingdan from '@/components/dingdan/dingdan'
@@ -128,9 +128,9 @@ export default new Router({
       },
     },
     {
-      path: '/address',
-      name: 'address',
-      component: address,
+      path: '/dizhi',
+      name: 'dizhi',
+      component: dizhi,
       meta: {
         requireAuth: true // 配置此条，进入页面前判断是否需要登陆
       },

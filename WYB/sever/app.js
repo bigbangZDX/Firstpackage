@@ -180,6 +180,7 @@ app.post("/login", function (req, res) {
 				console.log("添加失败")
 			} else {
 				//			res.send(result);
+				console.log("long",result)
 				console.log("result11111:", result.ops[0]._id)
 				res.send({code:0,sid:result.ops[0]._id})
 				db.close();
